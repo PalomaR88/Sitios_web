@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/home/paloma/DISCO2/CICLO II/SERVICIO DE RED E INTERNET/Sitios_web/Ejercicio_principiante","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}

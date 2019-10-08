@@ -1,0 +1,12 @@
+
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define :sitio_web do |sitio_web|
+    sitio_web.vm.box = "debian/buster64"
+    sitio_web.vm.hostname = "servidor"
+    sitio_web.vm.network :public_network,:bridge=>"enp2s0"
+  end
+end
