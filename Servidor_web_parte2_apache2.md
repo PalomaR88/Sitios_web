@@ -62,7 +62,7 @@ En **apache2.conf**, que es el fichero de configuración general, encontramos la
 
 De esta forma, en vez de tener una configuración por cada sitio, se configura todo en el mismo fichero. Y, además, se puede alterar las difrecciones las direcciones y, que por ejemplo, configurar un sitio web en /home/usuario/pagina.
 
-Vamos a configurar nuestro servidor web para que nos sirva **www.pag1.com** y  ***www.pag2.com**:
+Vamos a configurar nuestro servidor web para que nos sirva **www.pag1.com** y  **www.pag2.com**:
 - Los ficheros de pag1 los vamos a guardar en /var/www/pag1 y el server name será www.pag1.com. Esta configuración se va a guardar en: /etc/apache2/sites-availables/web-pa1.conf (en principio, lo más fácil es copiar el fichero del sitio por defecto y cambiarle los parámetros).
 
 - El sitio pag2 se encuentra en /var/www/pag2, el name server www.pag2.com y el fichero de configuración web-pag2.conf.

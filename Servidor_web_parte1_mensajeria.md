@@ -50,10 +50,13 @@ Hacer una petición get:
 GET http//josedom24.org...
 
 Hacer un head:
+
+~~~
+# Se ve la primera línea de la cabecera y toda la información de la cabecera.
 HEAD http//josedom24.org...
-Se ve la primera línea de la cabecera y toda la información de la cabecera. 
 200 ok
-cache-control: max-age=600 -- Indica cuando expira
+# Indica cuando expira
+cache-control: max-age=600 
 Connection: close
 Date: Mon, 07 Oct 2019 07:01:55 GMT
 Via: 1.1 varnish, 1.1 f0.41011038.41.andared.ced.junta-andalucia.es:3128 (squid/2.7.STABLE9)
@@ -79,6 +82,7 @@ X-GitHub-Request-Id: 3860:3FB2:4BC154:65CEF0:5D9AE2E3
 X-Proxy-Cache: MISS
 X-Served-By: cache-mad22035-MAD
 X-Timer: S1570431716.516475,VS0,VE464
+~~~
 
 
 
