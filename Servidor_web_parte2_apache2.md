@@ -20,17 +20,13 @@ Necesitamos que Apache le de una configuración al Document Root para funcione. 
 
 	ServerAdmin webmaster@localhost
 	DocumentRoot /var/www/html
-.
-.
-.
+...
 ~~~
 
 En **apache2.conf**, que es el fichero de configuración general, encontramos las direcciones de los directorios y subdirectorios. Cuando un directorio está configurado, sus directorios están configurados automáticamente. 
 
 ~~~
-.
-.
-.
+...
 <Directory />
 	Options FollowSymLinks
 	AllowOverride None
@@ -55,9 +51,7 @@ En **apache2.conf**, que es el fichero de configuración general, encontramos la
 #	Require all granted
 #</Directory>
 
-.
-.
-.
+...
 ~~~
 
 De esta forma, en vez de tener una configuración por cada sitio, se configura todo en el mismo fichero. Y, además, se puede alterar las difrecciones las direcciones y, que por ejemplo, configurar un sitio web en /home/usuario/pagina.

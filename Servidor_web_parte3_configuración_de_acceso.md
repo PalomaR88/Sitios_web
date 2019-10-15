@@ -117,6 +117,133 @@ Alias "/image" "/ftp/pub/image"
 
 ~~~
 AliasMatch "^/image/(.*)$" "/ftp/pub/image/$1"
+~~~
+
+
+## Redirecciones
+La directiva redirect es usada para pedir a cliente que haga otra petición a una URL diferente. Normalmente la usamos cuando el recurso al que queremos acceder ha cambiado de localización.
+
+En las redirecciones el usuario pide una dirección y el servidor le responde que eso no está ahí, sino en otra dirección. 
+
+- Temporales (302)
+~~~
+Redirect "/service" "http://www.pagina.com/service"
+Redirect "/one" "/two"
+~~~
+
+-Permanentes (301)
+~~~
+Redirect permanent "/one" "http://www.pagina2.com/two"
+Redirect 301 "/otro" /otra"
+~~~
+
+
+## Páginas de errores personalizadas
+Podemos cambiar las páginas de error:
+1. Desplegar un texto diferente, en lugar de los mensajes que aparecen por defecto.
+2. Redireccionar la petición a una URL local.
+3. Redireccionar la petición a una IRL externa.
+
+- Con la directiva ErrorDocument
+- Con el fichero: /etcapache2/conf-available/localizad-error-pages.conf
+
+**Cambiando el idio de las páginas de error personalizadas**
+En el directorio **/usr/share/apache2/error** nos encontramos fichero tipo mapa donde se encuentra definidas las páginas de error personalizadas para distintos idiomas.
+
+
+## Control de acceso
+¿Quién tiene permiso para entrar en los recursos?
+
+- Require
+- Require not
+
+~~~
+Require all granted - todos tienen permisos
+Require all denied - ninguno
+Require user userid [userid] - determinados usuarios tienen permiso
+Require group [group-name] - determinados grupos
+Require valid-user - determinados usuarios validados
+Require ip 10 x.x.x.x - determinados usuarios que entran por una red
+Require host dominio
+Require local
+~~~
+
+Esto es algo que ha cambio de Apache 2.2 a 2.4. Hay que tener cuidado con lo que se compia y pega de internet. 
+
+Existen bloques de instrucciones para el control de acceso.
+- RequireAll
+- RequireAny
+- RequireNone
+
+
+## Autentificación básica
+Mi virtual host o parte de el necesita de un usuario y una contraseña para acceder a él. Para ello se necesita un directory dodne se va a configurar la autentificación.
+
+~~~
+<Directory "/var/www/pagina1/privado">
+	AuthUserFile "Palabra de paso"
+	AuthType Basic
+	Require valid-user
+</Directory>
+~~~
+
+Pasos:
+1. Crear el fichero de usuario (la opción -c solo se utiliza utiliza la primera vez):
+~~~
+htpasswd [-c] /etc/apache2/claves/passwd.txt usuario1
+~~~
+
+2. Crear el fichero de grupos.
+~~~
+NombreGrupo: usuario1 usuario2 usuario3
+~~~
+
+Esta opción casi no se utiliza, porque la contraseña se envía en claro. 
+
+
+## Autentificación digest
+Esta opción es más segura que la anterior. Se guarda el nombre del usuario, un nom.bre de dominio y la contraseña. 
+~~~
+<Directory "/var/www/pagina1/provado">
+	AuthUserFile "/etc/apache/claves/digest.txt
+	AuthName "dominio"
+	AuthType Digest
+	Require valid-user
+</Directory>
+~~~
+
+Para crear el fichero de usuarios
+~~~
+htdigest [-c] /etc/apache2/claves/digest.txt dominio usuario1
+~~~
+
+
+## Políticas de autentificación y control de acceso
+
+Apache 2.2
+Como se debía comportar el servidor cuando tenemos varias instrucciones de control de acceso (allow, deny, require). De esta manera:
+- Satisfy All: se tenían que cumplir todas las condiciones para obtener el acceso. 
+- Satisfy Any: Bastaba con que se cumpliera una de las conficiones. 
+
+Apache 2.4
+Las políticas de acceso la podemos indicar usando las directivas:
+- RequireAll: todas las condiciones dentro del bloque se deben cumplir para obtener el acceso.
+- RequireAny: al menos una de las condicionies en el bloque se debe cumplir.
+- RequireNone: ninguna de las condiciones se deben cumplir para perminir el acceso. 
+
+
+## .htaccess
+Directiva: **AllowOverride**
+- All
+- None
+- AuthConfig
+- FileInfo
+- Indexes
+- Limit
+
+
+
+
 
 
 
