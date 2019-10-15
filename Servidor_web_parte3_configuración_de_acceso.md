@@ -233,6 +233,7 @@ Las políticas de acceso la podemos indicar usando las directivas:
 
 
 ## .htaccess
+Si permites aquí y en otro sitio se contradice, este archivo reescribe todo. 
 Directiva: **AllowOverride**
 - All
 - None
